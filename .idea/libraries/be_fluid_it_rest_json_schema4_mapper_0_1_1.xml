@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="be.fluid-it.rest:json-schema4-mapper:0.1-1" type="repository">
+    <properties maven-id="be.fluid-it.rest:json-schema4-mapper:0.1-1" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/json-schema4-mapper-0.1-1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/json-20140107.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

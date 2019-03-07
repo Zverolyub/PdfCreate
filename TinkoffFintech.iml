@@ -8,5 +8,11 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="poi-4.0.1" level="project" />
+    <orderEntry type="library" exported="" name="org.codehaus.httpcache4j.clients:clients-httpclient:1.0-RC4" level="project" />
+    <orderEntry type="library" exported="" name="org.apache.pdfbox:pdfbox:2.0.14" level="project" />
+    <orderEntry type="library" exported="" name="org.apache.httpcomponents:httpclient:4.5.7" level="project" />
+    <orderEntry type="library" exported="" name="org.json:json:20180813" level="project" />
+    <orderEntry type="library" exported="" name="be.fluid-it.rest:json-schema4-mapper:0.1-1" level="project" />
+    <orderEntry type="library" exported="" name="jackson-all-1.8.2.jar" level="project" />
   </component>
 </module>

@@ -1,7 +1,6 @@
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -19,10 +18,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import static org.apache.http.HttpHeaders.USER_AGENT;
+
 import static org.apache.pdfbox.pdmodel.font.PDType1Font.HELVETICA_BOLD;
 
 
@@ -35,13 +32,7 @@ public class Main {
 
         printHeader(sheet);
         Integer startRow = 1;
-//            PersonGenerator personGenerator = new PersonGenerator();
-//            Integer rowsCount = (int) (Math.random() * 30) + 1;
 
-//            for (int i = 0; i < rowsCount; i++) {
-//                Person person = personGenerator.Generate();
-//                printRow(sheet, startRow + i, person);
-//            }
         List<Person> persons = requestPersons();
         for (int i = 0; i < persons.size(); i++) {
             printRow(sheet, startRow + i, persons.get(i));
@@ -58,88 +49,82 @@ public class Main {
 
     private static List<Person> requestPersons() throws URISyntaxException, IOException {
 
-        int personCount = ThreadLocalRandom.current().nextInt(0, 30);
-        HttpClient client = HttpClientBuilder.create().build();
-        // Создаем билдер для URI
-        String url = String.format("https://randomuser.me/api/?results=%s", personCount);
-        // Создаем инстанс HttpGet
-        HttpGet request = new HttpGet(url);
-        // Выполняем запрос
-        HttpResponse response = client.execute(request);
 
-       // URIBuilder builder = new URIBuilder(url);
-        //URIBuilder uriBuilder = builder.setParameter("first", "0").setParameter("last", "20");
+            int personCount = ThreadLocalRandom.current().nextInt(0, 30);
+            HttpClient client = HttpClientBuilder.create().build();
+            // Создаем билдер для URI
+            String url = String.format("https://randomuser.me/api/?results=%s", personCount);
+            // Создаем инстанс HttpGet
+            HttpGet request = new HttpGet(url);
+            // Выполняем запрос
+            HttpResponse response = client.execute(request);
 
-        // Получаем тело ответа
-        BufferedReader reader = new BufferedReader(
-                new InputStreamReader(response.getEntity().getContent()));
-
-        String line = "";
-        StringBuffer result = new StringBuffer();
-        while ((line = reader.readLine()) != null) {
-            result.append(line);
-
-        }
-
-        List<Person> personList = new ArrayList<Person>();
+            // Получаем тело ответа
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(response.getEntity().getContent()));
 
 
-        for (int i = 0; i < personCount; i++) {
-            JSONObject obj = new JSONObject(result.toString());
-            JSONObject personObject = obj
-                    .getJSONArray("results")
-                    .getJSONObject(i);
-            String personFirstName = personObject
-                    .getJSONObject("name")
-                    .getString("first");
-            String personSurname = personObject
-                    .getJSONObject("name")
-                    .getString("last");
-            Integer personAge = personObject
-                    .getJSONObject("dob")
-                    .getInt("age");
-            String birthday = personObject
-                    .getJSONObject("dob")
-                    .getString("date");
-            String personRegion = personObject
-                    .getJSONObject("location")
-                    .getString("state");
-            String personStreet = personObject
-                    .getJSONObject("location")
-                    .getString("street");
-            String personCity = personObject
-                    .getJSONObject("location")
-                    .getString("city");
-            //String personZipCode = personObject
-            //        .getJSONObject("location")
-             //       .getString("postcode");
-            String personSex = personObject
-                    .getJSONObject("name")
-                    .getString("title");
+            String line = "";
+            StringBuffer result = new StringBuffer();
+            while ((line = reader.readLine()) != null) {
+                result.append(line);
+
+            }
+
+            List<Person> personList = new ArrayList<Person>();
 
 
-            Person person = new Person();
-            person.Name = personFirstName;
-            person.Surname = personSurname;
-            person.Age = personAge;
-            person.Birthday = LocalDate.parse(birthday.substring(0, 10));
-            person.Region = personRegion;
-            person.City = personCity;
-            person.Street = personStreet;
-            person.House = ThreadLocalRandom.current().nextInt(0, 150);
-            person.Apartment = ThreadLocalRandom.current().nextInt(0, 409);
-            person.ZipCode = String.valueOf(ThreadLocalRandom.current().nextInt(100000, 200000));
-            //person.ZipCode = String.valueOf(personZipCode);
-            person.Country = new PersonGenerator().Generate().Country;
-            person.INN = new PersonGenerator().Generate().INN;
-            person.MiddleName = "-";
-            person.Sex = personSex;
+            for (int i = 0; i < personCount; i++) {
+                JSONObject obj = new JSONObject(result.toString());
+                JSONObject personObject = obj
+                        .getJSONArray("results")
+                        .getJSONObject(i);
+                String personFirstName = personObject
+                        .getJSONObject("name")
+                        .getString("first");
+                String personSurname = personObject
+                        .getJSONObject("name")
+                        .getString("last");
+                Integer personAge = personObject
+                        .getJSONObject("dob")
+                        .getInt("age");
+                String birthday = personObject
+                        .getJSONObject("dob")
+                        .getString("date");
+                String personRegion = personObject
+                        .getJSONObject("location")
+                        .getString("state");
+                String personStreet = personObject
+                        .getJSONObject("location")
+                        .getString("street");
+                String personCity = personObject
+                        .getJSONObject("location")
+                        .getString("city");
+                String personSex = personObject
+                        .getJSONObject("name")
+                        .getString("title");
 
-            personList.add(person);
-        }
+                Person person = new Person();
+                person.Name = personFirstName;
+                person.Surname = personSurname;
+                person.Age = personAge;
+                person.Birthday = LocalDate.parse(birthday.substring(0, 10));
+                person.Region = personRegion;
+                person.City = personCity;
+                person.Street = personStreet;
+                person.House = ThreadLocalRandom.current().nextInt(0, 150);
+                person.Apartment = ThreadLocalRandom.current().nextInt(0, 409);
+                person.ZipCode = String.valueOf(ThreadLocalRandom.current().nextInt(100000, 200000));
+                person.Country = new PersonGenerator().Generate().Country;
+                person.INN = new PersonGenerator().Generate().INN;
+                person.MiddleName = "-";
+                person.Sex = personSex;
 
+                personList.add(person);
+
+            }
         return personList;
-    }
+        }
 
     public static void savePdf() throws IOException {
         try {

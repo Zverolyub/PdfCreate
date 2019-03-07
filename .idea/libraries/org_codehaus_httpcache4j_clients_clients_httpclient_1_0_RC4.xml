@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="org.codehaus.httpcache4j.clients:clients-httpclient:1.0-RC4" type="repository">
+    <properties maven-id="org.codehaus.httpcache4j.clients:clients-httpclient:1.0-RC4" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/clients-httpclient-1.0-RC4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-httpclient-3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-logging-1.0.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-codec-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/httpcache4j-api-1.0-RC4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activation-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-lang-2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/joda-time-1.5.2.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
